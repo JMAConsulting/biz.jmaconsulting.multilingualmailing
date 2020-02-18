@@ -180,7 +180,7 @@ function multilingualmailing_civicrm_tokens(&$tokens) {
 
 function multilingualmailing_civicrm_tokenValues(&$values, $cids, $job = null, $tokens = array(), $context = null) {
   // Date tokens
-  if (!empty($tokens['mailing'])) {
+  if (!empty($tokens['mailing']) && $job) {
     $mailingId = CRM_Core_DAO::singleValueQuery("SELECT mailing_id FROM civicrm_mailing_job WHERE id = %1", [1 => [$job, "Integer"]]);
     if (!empty($mailingId)) {
       $currentLanguage = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguage($mailingId);
