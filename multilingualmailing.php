@@ -145,14 +145,18 @@ function multilingualmailing_civicrm_alterAngular($angular) {
   $changeSet = \Civi\Angular\ChangeSet::create('inject_translation')
     ->alterHtml('~/crmMosaico/BlockMailing.html',
       function (phpQueryObject $doc) {
-        $doc->find('.form-group-lg')->append('
-          <div class="form-group" crm-ui-field="{name: \'subform.frenchmail\', title: ts(\'Alternative Language Mailing\')}">
-            <input
+        $doc->find('.form-group-lg')->after('
+          <div class="form-group">
+          <div ui-field="{name: \'subform.frenchmail\', title: ts(\'Alternative Language Mailing\')}">
+            <label for="frenchmail" class="control-label ng-binding">Alternative Language Mailing</label>
+            <div class="clear"></div>
+              <input
               crm-entityref="{entity: \'Mailing\', select: {allowClear: true, placeholder: ts(\'Select Alternative Language Mailing\')}}"
               crm-ui-id="subform.frenchmail"
               name="frenchmail"
               ng-model="mailing.frenchmail_id"
              />
+          </div>
           </div>
         ');
       });
