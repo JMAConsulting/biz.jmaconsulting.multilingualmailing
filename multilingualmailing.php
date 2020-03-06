@@ -111,6 +111,10 @@ function multilingualmailing_civicrm_caseTypes(&$caseTypes) {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
 function multilingualmailing_civicrm_angularModules(&$angularModules) {
+  $angularModules['myAngularModule'] = array(
+    'ext' => 'biz.jmaconsulting.multilingualmailing',
+    'js' => array('js/removeclass.js'),
+  );
   _multilingualmailing_civix_civicrm_angularModules($angularModules);
 }
 
@@ -145,18 +149,14 @@ function multilingualmailing_civicrm_alterAngular($angular) {
   $changeSet = \Civi\Angular\ChangeSet::create('inject_translation')
     ->alterHtml('~/crmMosaico/BlockMailing.html',
       function (phpQueryObject $doc) {
-        $doc->find('.form-group-lg')->after('
-          <div class="form-group">
-          <div ui-field="{name: \'subform.frenchmail\', title: ts(\'Alternative Language Mailing\')}">
-            <label for="frenchmail" class="control-label ng-binding">Alternative Language Mailing</label>
-            <div class="clear"></div>
-              <input
+        $doc->find('.form-group-lg')->append('
+          <div class="form-group" crm-ui-field="{name: \'subform.frenchmail\', title: ts(\'Alternative Language Mailing\')}" crmRemoveClass>
+            <input
               crm-entityref="{entity: \'Mailing\', select: {allowClear: true, placeholder: ts(\'Select Alternative Language Mailing\')}}"
               crm-ui-id="subform.frenchmail"
               name="frenchmail"
               ng-model="mailing.frenchmail_id"
              />
-          </div>
           </div>
         ');
       });
