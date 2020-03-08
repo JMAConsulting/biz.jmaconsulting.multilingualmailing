@@ -152,7 +152,7 @@ function multilingualmailing_civicrm_alterAngular($angular) {
         $doc->find('.form-group-lg')->append('
           <div class="form-group" crm-ui-field="{name: \'subform.frenchmail\', title: ts(\'Alternative Language Mailing\')}" crm-remove-class>
             <input
-              crm-entityref="{entity: \'Mailing\', select: {allowClear: true, placeholder: ts(\'Select Alternative Language Mailing\')}}"
+              crm-entityref="{entity: \'Mailing\', select: {allowClear: true, placeholder: ts(\'Select Alternative Language Mailing\'), width: \'36em\'}}"
               crm-ui-id="subform.frenchmail"
               name="frenchmail"
               ng-model="mailing.frenchmail_id"
