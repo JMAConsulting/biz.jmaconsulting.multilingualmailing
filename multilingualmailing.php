@@ -223,19 +223,21 @@ function multilingualmailing_civicrm_tokenValues(&$values, $cids, $job = null, $
 
 function multilingualmailing_token_eval($event) {
   foreach ($event->getRows() as $row) {
-    $mailingId = $event->getTokenProcessor()->getContextValues('mailingId')[0];
-    $currentLanguage = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguage($mailingId);
-    $currentLanguageText = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguageText($currentLanguage);
-    $currentURL = CRM_Utils_System::url('civicrm/mailing/view', "reset=1&id={$mailingId}", TRUE);
-    $frenchMail = new CRM_Multilingualmailing_DAO_MultilingualMailing();
-    $frenchMail->mailing_id = $mailingId;
-    $frenchMail->find(TRUE);
-    if (!empty($frenchMail->frenchmail_id)) {
-      $altLanguage = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguage($frenchMail->frenchmail_id);
-      $altLanguageText = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguageText($altLanguage);
-      $altURL = CRM_Utils_System::url('civicrm/mailing/view', "reset=1&id={$frenchMail->frenchmail_id}", TRUE);
-      $row->format('text/html');
-      $row->tokens('mailing', 'viewTranslationLinks', '<a style="color:#ffffff;text-decoration:none;" href="' . $currentURL . '">' . $currentLanguageText . '</a>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#ffffff;text-decoration:none;" href="'. $altURL .'">' . $altLanguageText . '</a>');
+    $mailingId = $event->getTokenProcessor()->getContextValues('mailingId')[0] ?? FALSE;
+    if ($mailingId) {
+      $currentLanguage = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguage($mailingId);
+      $currentLanguageText = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguageText($currentLanguage);
+      $currentURL = CRM_Utils_System::url('civicrm/mailing/view', "reset=1&id={$mailingId}", TRUE);
+      $frenchMail = new CRM_Multilingualmailing_DAO_MultilingualMailing();
+      $frenchMail->mailing_id = $mailingId;
+      $frenchMail->find(TRUE);
+      if (!empty($frenchMail->frenchmail_id)) {
+        $altLanguage = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguage($frenchMail->frenchmail_id);
+        $altLanguageText = CRM_Multilingualmailing_BAO_MultilingualMailing::fetchLanguageText($altLanguage);
+        $altURL = CRM_Utils_System::url('civicrm/mailing/view', "reset=1&id={$frenchMail->frenchmail_id}", TRUE);
+        $row->format('text/html');
+        $row->tokens('mailing', 'viewTranslationLinks', '<a style="color:#ffffff;text-decoration:none;" href="' . $currentURL . '">' . $currentLanguageText . '</a>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#ffffff;text-decoration:none;" href="'. $altURL .'">' . $altLanguageText . '</a>');
+      }
     }
   }
 }
