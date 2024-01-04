@@ -14,15 +14,6 @@ function multilingualmailing_civicrm_config(&$config) {
 }
 
 /**
- * Implements hook_civicrm_xmlMenu().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
- */
-function multilingualmailing_civicrm_xmlMenu(&$files) {
-  _multilingualmailing_civix_civicrm_xmlMenu($files);
-}
-
-/**
  * Implements hook_civicrm_install().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
@@ -32,73 +23,12 @@ function multilingualmailing_civicrm_install() {
 }
 
 /**
- * Implements hook_civicrm_postInstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
- */
-function multilingualmailing_civicrm_postInstall() {
-  _multilingualmailing_civix_civicrm_postInstall();
-}
-
-/**
- * Implements hook_civicrm_uninstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
- */
-function multilingualmailing_civicrm_uninstall() {
-  _multilingualmailing_civix_civicrm_uninstall();
-}
-
-/**
  * Implements hook_civicrm_enable().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
 function multilingualmailing_civicrm_enable() {
   _multilingualmailing_civix_civicrm_enable();
-}
-
-/**
- * Implements hook_civicrm_disable().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
- */
-function multilingualmailing_civicrm_disable() {
-  _multilingualmailing_civix_civicrm_disable();
-}
-
-/**
- * Implements hook_civicrm_upgrade().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
- */
-function multilingualmailing_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _multilingualmailing_civix_civicrm_upgrade($op, $queue);
-}
-
-/**
- * Implements hook_civicrm_managed().
- *
- * Generate a list of entities to create/deactivate/delete when this module
- * is installed, disabled, uninstalled.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
- */
-function multilingualmailing_civicrm_managed(&$entities) {
-  _multilingualmailing_civix_civicrm_managed($entities);
-}
-
-/**
- * Implements hook_civicrm_caseTypes().
- *
- * Generate a list of case-types.
- *
- * Note: This hook only runs in CiviCRM 4.4+.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
- */
-function multilingualmailing_civicrm_caseTypes(&$caseTypes) {
-  _multilingualmailing_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -116,34 +46,6 @@ function multilingualmailing_civicrm_angularModules(&$angularModules) {
     'ext' => 'biz.jmaconsulting.multilingualmailing',
     'js' => array('js/removeclass.js'),
   );
-  _multilingualmailing_civix_civicrm_angularModules($angularModules);
-}
-
-/**
- * Implements hook_civicrm_alterSettingsFolders().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
- */
-function multilingualmailing_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _multilingualmailing_civix_civicrm_alterSettingsFolders($metaDataFolders);
-}
-
-/**
- * Implements hook_civicrm_entityTypes().
- *
- * Declare entity types provided by this module.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
- */
-function multilingualmailing_civicrm_entityTypes(&$entityTypes) {
-  _multilingualmailing_civix_civicrm_entityTypes($entityTypes);
-}
-
-/**
- * Implements hook_civicrm_thems().
- */
-function multilingualmailing_civicrm_themes(&$themes) {
-  _multilingualmailing_civix_civicrm_themes($themes);
 }
 
 function multilingualmailing_civicrm_alterAngular($angular) {
@@ -250,9 +152,6 @@ function multilingualmailing_token_eval($event) {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
  *
  * /
-function multilingualmailing_civicrm_preProcess($formName, &$form) {
-
-}
 
 /**
  * Implements hook_civicrm_navigationMenu().
